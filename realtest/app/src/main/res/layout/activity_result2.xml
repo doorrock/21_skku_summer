@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_result2"
+    <LinearLayout
         android:layout_width="match_parent"
+<<<<<<< HEAD
         android:layout_height="wrap_content"
         android:background="@color/real_action_bar"
         android:minHeight="?attr/actionBarSize"
@@ -58,50 +57,137 @@
                 android:padding="5dp"
                 android:orientation="vertical"
                 android:background="@drawable/custom_layout2">
+=======
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_result2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/real_action_bar"
+            android:minHeight="?attr/actionBarSize"
+            app:logo="@drawable/ic_home"
+            app:titleTextColor="@color/white" />
+
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/scrollView_result2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+>>>>>>> main
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+<<<<<<< HEAD
                     android:orientation="horizontal"
                     android:gravity="center"
                     android:layout_marginTop="5dp">
+=======
+                    android:layout_margin="16dp"
+                    android:padding="5dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/custom_layout2">
+>>>>>>> main
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="16dp"
-                        android:text="선택한 알레르기 : "/>
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16dp"
+                            android:text="선택한 알레르기 : "/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16dp"
+                            android:id="@+id/text_allergy_result2"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="16dp"
-                        android:id="@+id/text_allergy_result2"/>
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16dp"
+                            android:text="선택한 질환 : "/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16dp"
+                            android:id="@+id/text_disease_result2"/>
+
+                    </LinearLayout>
 
                 </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:textSize="20dp"
+                    android:text="결과가 없습니다."
+                    android:id="@+id/text_result2"
+                    android:background="@drawable/custom_layout2"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+<<<<<<< HEAD
                     android:gravity="center"
                     android:layout_marginBottom="5dp"
                     android:layout_marginTop="5dp"
                     android:orientation="horizontal">
+=======
+                    android:layout_margin="16dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/custom_layout2">
+>>>>>>> main
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="16dp"
-                        android:text="선택한 질환 : "/>
-
+                        android:text="영양정보 그래프"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="16dp"
-                        android:id="@+id/text_disease_result2"/>
+                        android:text="( 1일 영양성분 기준치에 대한 비율 )"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"/>
+                    <com.github.mikephil.charting.charts.BarChart
+                        android:id="@+id/bar_chart"
+                        android:layout_width="match_parent"
+                        android:layout_height="240dp"
+                        android:layout_margin="16dp"/>
 
                 </LinearLayout>
 
+<<<<<<< HEAD
             </LinearLayout>
 
             <TextView
@@ -160,9 +246,124 @@
                     android:textColor="@color/black"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginBottom="5dp"/>-->
+=======
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/direct_key"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="10dp"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/button1_result2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="나트륨"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:background="@drawable/custom_button"
+                            android:layout_margin="2dp"/>
+
+                        <Button
+                            android:id="@+id/button2_result2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="탄수화물"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:background="@drawable/custom_button"
+                            android:layout_margin="2dp"/>
+
+                        <Button
+                            android:id="@+id/button3_result2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="당류"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:background="@drawable/custom_button"
+                            android:layout_margin="2dp"/>
+
+                        <Button
+                            android:id="@+id/button4_result2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="지방"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:background="@drawable/custom_button"
+                            android:layout_margin="2dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/button5_result2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="트랜스지방"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:background="@drawable/custom_button"
+                            android:layout_margin="2dp"/>
+
+                        <Button
+                            android:id="@+id/button6_result2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="포화지방"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:background="@drawable/custom_button"
+                            android:layout_margin="2dp"/>
+
+                        <Button
+                            android:id="@+id/button7_result2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="콜레스테롤"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:background="@drawable/custom_button"
+                            android:layout_margin="2dp"/>
+
+                        <Button
+                            android:id="@+id/button8_result2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="단백질"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:background="@drawable/custom_button"
+                            android:layout_margin="2dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+>>>>>>> main
+                <LinearLayout
+                    android:id="@+id/chart1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+<<<<<<< HEAD
                     android:orientation="horizontal"
                     android:layout_gravity="center">
 
@@ -205,12 +406,53 @@
                         app:layout_constraintStart_toStartOf="parent"
                         android:background="@drawable/custom_button"
                         android:layout_margin="3dp"/>
+=======
+                    android:layout_margin="16dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/custom_layout">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cover1"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="( 단위: mg )"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No data"
+                        android:textSize="16dp"
+                        android:id="@+id/chart1_text"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"/>
+                    <com.github.mikephil.charting.charts.HorizontalBarChart
+                        android:id="@+id/hor_chart1"
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"
+                        android:layout_margin="16dp"/>
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/pie_chart1"
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"
+                        android:layout_margin="16dp"/>
+>>>>>>> main
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:id="@+id/chart2"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+<<<<<<< HEAD
                     android:orientation="horizontal"
                     android:layout_marginBottom="12dp"
                     android:layout_gravity="center">
@@ -254,19 +496,50 @@
                         app:layout_constraintStart_toStartOf="parent"
                         android:background="@drawable/custom_button"
                         android:layout_margin="3dp"/>
+=======
+                    android:layout_margin="16dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/custom_layout">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cover2"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="( 단위: g )"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No data"
+                        android:textSize="16dp"
+                        android:id="@+id/chart2_text"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"/>
+                    <com.github.mikephil.charting.charts.HorizontalBarChart
+                        android:id="@+id/hor_chart2"
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"
+                        android:layout_margin="16dp"/>
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/pie_chart2"
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"
+                        android:layout_margin="16dp"/>
+>>>>>>> main
 
                 </LinearLayout>
 
-            </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/chart1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:orientation="vertical"
-                android:background="@drawable/custom_layout">
-
+<<<<<<< HEAD
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -352,18 +625,54 @@
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="8dp"/>
+=======
+                <LinearLayout
+                    android:id="@+id/chart3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/custom_layout">
+>>>>>>> main
 
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cover3"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="( 단위: g )"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No data"
+                        android:textSize="16dp"
+                        android:id="@+id/chart3_text"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"/>
+                    <com.github.mikephil.charting.charts.HorizontalBarChart
+                        android:id="@+id/hor_chart3"
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"
+                        android:layout_margin="16dp"/>
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/pie_chart3"
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"
+                        android:layout_margin="16dp"/>
+
+                </LinearLayout>
 
 
-            <LinearLayout
-                android:id="@+id/chart3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:orientation="vertical"
-                android:background="@drawable/custom_layout">
-
+<<<<<<< HEAD
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -450,19 +759,55 @@
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="8dp"/>
+=======
+                <LinearLayout
+                    android:id="@+id/chart4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/custom_layout">
+>>>>>>> main
 
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cover4"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="( 단위: g )"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No data"
+                        android:textSize="16dp"
+                        android:id="@+id/chart4_text"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"/>
+                    <com.github.mikephil.charting.charts.HorizontalBarChart
+                        android:id="@+id/hor_chart4"
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"
+                        android:layout_margin="16dp"/>
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/pie_chart4"
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"
+                        android:layout_margin="16dp"/>
+
+                </LinearLayout>
 
 
 
-            <LinearLayout
-                android:id="@+id/chart5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:orientation="vertical"
-                android:background="@drawable/custom_layout">
-
+<<<<<<< HEAD
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -500,18 +845,54 @@
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="8dp"/>
+=======
+                <LinearLayout
+                    android:id="@+id/chart5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/custom_layout">
+>>>>>>> main
 
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cover5"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="( 단위: g )"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No data"
+                        android:textSize="16dp"
+                        android:id="@+id/chart5_text"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"/>
+                    <com.github.mikephil.charting.charts.HorizontalBarChart
+                        android:id="@+id/hor_chart5"
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"
+                        android:layout_margin="16dp"/>
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/pie_chart5"
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"
+                        android:layout_margin="16dp"/>
+
+                </LinearLayout>
 
 
-            <LinearLayout
-                android:id="@+id/chart6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:orientation="vertical"
-                android:background="@drawable/custom_layout">
-
+<<<<<<< HEAD
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -549,18 +930,54 @@
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="8dp"/>
+=======
+                <LinearLayout
+                    android:id="@+id/chart6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/custom_layout">
+>>>>>>> main
 
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cover6"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="( 단위: g )"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No data"
+                        android:textSize="16dp"
+                        android:id="@+id/chart6_text"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"/>
+                    <com.github.mikephil.charting.charts.HorizontalBarChart
+                        android:id="@+id/hor_chart6"
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"
+                        android:layout_margin="16dp"/>
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/pie_chart6"
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"
+                        android:layout_margin="16dp"/>
+
+                </LinearLayout>
 
 
-            <LinearLayout
-                android:id="@+id/chart7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:orientation="vertical"
-                android:background="@drawable/custom_layout">
-
+<<<<<<< HEAD
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -598,19 +1015,55 @@
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="8dp"/>
+=======
+                <LinearLayout
+                    android:id="@+id/chart7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/custom_layout">
+>>>>>>> main
 
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cover7"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="( 단위: mg )"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No data"
+                        android:textSize="16dp"
+                        android:id="@+id/chart7_text"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"/>
+                    <com.github.mikephil.charting.charts.HorizontalBarChart
+                        android:id="@+id/hor_chart7"
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"
+                        android:layout_margin="16dp"/>
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/pie_chart7"
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"
+                        android:layout_margin="16dp"/>
+
+                </LinearLayout>
 
 
 
-            <LinearLayout
-                android:id="@+id/chart8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:orientation="vertical"
-                android:background="@drawable/custom_layout">
-
+<<<<<<< HEAD
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -648,19 +1101,64 @@
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="8dp"/>
+=======
+                <LinearLayout
+                    android:id="@+id/chart8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/custom_layout">
+>>>>>>> main
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cover8"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="( 단위: g )"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No data"
+                        android:textSize="16dp"
+                        android:id="@+id/chart8_text"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"/>
+                    <com.github.mikephil.charting.charts.HorizontalBarChart
+                        android:id="@+id/hor_chart8"
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"
+                        android:layout_margin="16dp"/>
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/pie_chart8"
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"
+                        android:layout_margin="16dp"/>
+
+                </LinearLayout>
+
+
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/listView1"/>
+
 
             </LinearLayout>
 
+        </ScrollView>
 
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/listView1"/>
-
-
-        </LinearLayout>
-
-    </ScrollView>
+    </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab2_result2"
@@ -671,4 +1169,4 @@
         app:backgroundTint="@color/home_button"
         app:srcCompat="@drawable/up"/>
 
-</LinearLayout>
+</FrameLayout>

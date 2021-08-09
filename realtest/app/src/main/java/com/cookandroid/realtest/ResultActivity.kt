@@ -1,11 +1,9 @@
 package com.cookandroid.realtest
 
+import android.content.ContentValues
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
@@ -16,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.view.marginTop
+import com.bumptech.glide.Glide
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.Legend
@@ -29,13 +27,35 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
 import org.json.JSONArray
 import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.GET
+import retrofit2.http.Path
 import java.io.*
 
-class ResultActivity : AppCompatActivity() {
 
+class ResultActivity : AppCompatActivity() {
+    interface API2{
+        @GET("/{product_name}")
+        fun getSearch(@Path("product_name") product_name: String): Call<List<ResultActivity.ResultGetSearch>>
+
+    }
+
+    var list = mutableListOf<ResultGetSearch>()
     private var backPressedTime: Long = 0
+    var categoryName = arrayListOf("빵", "샌드위치", "샐러드",
+        "아이스크림", "초콜릿", "사탕",
+        "과자", "젤리", "시리얼",
+        "탄산음료", "과/채음료", "커피",
+        "라면", "김치", "유제품",
+        "유산균", "잼", "소스")
     override fun onBackPressed() {
         // 2초내 다시 클릭하면 앱 종료
         if (System.currentTimeMillis() - backPressedTime < 2000) {
@@ -186,6 +206,7 @@ class ResultActivity : AppCompatActivity() {
         val maxAmount = arrayOf<Float>(2000f, 324f, 100f, 51f, 0f, 15f, 300f, 55f)
 
         var intent = getIntent()
+
         if (intent.hasExtra("filename")) {
 //            save_button.visibility = View.GONE
             var filename = intent.getStringExtra("filename")
@@ -262,6 +283,46 @@ class ResultActivity : AppCompatActivity() {
         initView()
         initBarChart(labels)
         setBarChart(btn_on_flag, info_arr_per, category_per)
+
+        val product_name=categoryName[category_idx]
+        val BASE_URL_API = "http://115.85.180.148:5000"
+        val retrofit = Retrofit.Builder()
+            .baseUrl(BASE_URL_API)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        val api = retrofit.create(API2::class.java)
+        val callGetSearch = api.getSearch(product_name)
+
+        callGetSearch.enqueue(object : Callback<List<ResultGetSearch>> {
+            override fun onResponse(
+                call: Call<List<ResultGetSearch>>,
+                response: Response<List<ResultGetSearch>>
+            ) {
+
+                Log.d(ContentValues.TAG, "성공 : ${response.raw()}")
+                var data : List<ResultGetSearch>? = response?.body()
+                if(list.isEmpty()){
+                    for ( i in data!!) {
+                        i.let {
+                            val title = it.title
+                            val content = it.content
+                            val imageurl= it.imageurl
+                            list.add(ResultGetSearch(title,content, imageurl))
+
+                            Log.i("data", i.toString())
+
+                        }
+
+                    }
+                }
+
+
+            }
+
+            override fun onFailure(call: Call<List<ResultGetSearch>>, t: Throwable) {
+                Log.d(ContentValues.TAG, "실패 : $t")
+            }
+        })
 
     }
 
@@ -446,9 +507,16 @@ class ResultActivity : AppCompatActivity() {
         }
     }
 
-    inner class Model(val title:String, val desc:String, val photo:Int )
-    inner class MyListAdapter(var mCtx: Context, var resource:Int, var items:List<Model>)
-        :ArrayAdapter<Model>( mCtx , resource , items ){
+    data class ResultGetSearch(
+        @SerializedName("title") val title: String,
+        @Expose
+        @SerializedName("content") val content: String,
+        @SerializedName("imageurl") val imageurl: String
+    )
+
+
+    inner class MyListAdapter(var mCtx:Context, var resource:Int, var items:List<ResultGetSearch>)
+        :ArrayAdapter<ResultGetSearch>( mCtx , resource , items ){
         override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
             val layoutInflater : LayoutInflater = LayoutInflater.from(mCtx)
             val view : View = layoutInflater.inflate(resource , null )
@@ -457,11 +525,12 @@ class ResultActivity : AppCompatActivity() {
             var textView1 : TextView = view.findViewById(R.id.descTv)
 
 
-            var person : Model = items[position]
+            var person : ResultGetSearch = items[position]
 
-            imageView.setImageDrawable(mCtx.resources.getDrawable(person.photo))
+            val url = person.imageurl
+            Glide.with(this@ResultActivity).load(url).into(imageView)
             textView.text = person.title
-            textView1.text = person.desc
+            textView1.text = person.content
 
 
             return view
@@ -477,16 +546,11 @@ class ResultActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.search -> {//상품 크롤링 다이얼로그
-                var list = mutableListOf<Model>()
-//                list.add(Model("상품 1",   " 가격",   R.drawable.vegetable  ))//상품 제목 상품 가격 상품이미지
-                list.add(Model("상품 1",   " 가격",   R.drawable.ic_action_person_black  ))
-                list.add(Model("상품 2", " 가격", R.mipmap.ic_launcher  ))
-                list.add(Model("상품 3",  " 가격",  R.mipmap.ic_launcher_round  ))
-                list.add(Model("상품 4",  " 가격",  R.mipmap.ic_launcher  ))
 
                 search_dialog = View.inflate(this@ResultActivity, R.layout.dialog_main, null) //dialog_main.xml 대입
                 var listView_search = search_dialog.findViewById<ListView>(R.id.listView_search)
                 var adapter_search = MyListAdapter(this, R.layout.row, list)
+                adapter_search.notifyDataSetChanged()
                 listView_search.adapter = adapter_search
 
                 val dlg = AlertDialog.Builder(this@ResultActivity)
