@@ -4,9 +4,6 @@ import android.content.ContentValues
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
@@ -17,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.view.marginTop
 import com.bumptech.glide.Glide
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.AxisBase
@@ -40,11 +36,26 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.GET
+import retrofit2.http.Path
 import java.io.*
 
+
 class ResultActivity : AppCompatActivity() {
+    interface API2{
+        @GET("/{product_name}")
+        fun getSearch(@Path("product_name") product_name: String): Call<List<ResultActivity.ResultGetSearch>>
+
+    }
+
     var list = mutableListOf<ResultGetSearch>()
     private var backPressedTime: Long = 0
+    var categoryName = arrayListOf("빵", "샌드위치", "샐러드",
+        "아이스크림", "초콜릿", "사탕",
+        "과자", "젤리", "시리얼",
+        "탄산음료", "과/채음료", "커피",
+        "라면", "김치", "유제품",
+        "유산균", "잼", "소스")
     override fun onBackPressed() {
         // 2초내 다시 클릭하면 앱 종료
         if (System.currentTimeMillis() - backPressedTime < 2000) {
@@ -73,44 +84,7 @@ class ResultActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
-        val BASE_URL_API = "http://115.85.180.148:5000"
-        val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL_API)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-        val api = retrofit.create(API::class.java)
-        val callGetSearch = api.getSearch()
 
-        callGetSearch.enqueue(object : Callback<List<ResultGetSearch>> {
-            override fun onResponse(
-                call: Call<List<ResultGetSearch>>,
-                response: Response<List<ResultGetSearch>>
-            ) {
-
-                Log.d(ContentValues.TAG, "성공 : ${response.raw()}")
-                var data : List<ResultGetSearch>? = response?.body()
-                if(list.isEmpty()){
-                    for ( i in data!!) {
-                        i.let {
-                            val title = it.title
-                            val content = it.content
-                            val imageurl= it.imageurl
-                            list.add(ResultGetSearch(title,content, imageurl))
-
-                            Log.i("data", i.toString())
-
-                        }
-
-                    }
-                }
-
-
-            }
-
-            override fun onFailure(call: Call<List<ResultGetSearch>>, t: Throwable) {
-                Log.d(ContentValues.TAG, "실패 : $t")
-            }
-        })
         val toolbar = findViewById<Toolbar>(R.id.toolbar_result)
         toolbar.title = "  Result"
         toolbar.inflateMenu(R.menu.menu_result)
@@ -232,6 +206,7 @@ class ResultActivity : AppCompatActivity() {
         val maxAmount = arrayOf<Float>(2000f, 324f, 100f, 51f, 0f, 15f, 300f, 55f)
 
         var intent = getIntent()
+
         if (intent.hasExtra("filename")) {
 //            save_button.visibility = View.GONE
             var filename = intent.getStringExtra("filename")
@@ -308,6 +283,46 @@ class ResultActivity : AppCompatActivity() {
         initView()
         initBarChart(labels)
         setBarChart(btn_on_flag, info_arr_per, category_per)
+
+        val product_name=categoryName[category_idx]
+        val BASE_URL_API = "http://115.85.180.148:5000"
+        val retrofit = Retrofit.Builder()
+            .baseUrl(BASE_URL_API)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        val api = retrofit.create(API2::class.java)
+        val callGetSearch = api.getSearch(product_name)
+
+        callGetSearch.enqueue(object : Callback<List<ResultGetSearch>> {
+            override fun onResponse(
+                call: Call<List<ResultGetSearch>>,
+                response: Response<List<ResultGetSearch>>
+            ) {
+
+                Log.d(ContentValues.TAG, "성공 : ${response.raw()}")
+                var data : List<ResultGetSearch>? = response?.body()
+                if(list.isEmpty()){
+                    for ( i in data!!) {
+                        i.let {
+                            val title = it.title
+                            val content = it.content
+                            val imageurl= it.imageurl
+                            list.add(ResultGetSearch(title,content, imageurl))
+
+                            Log.i("data", i.toString())
+
+                        }
+
+                    }
+                }
+
+
+            }
+
+            override fun onFailure(call: Call<List<ResultGetSearch>>, t: Throwable) {
+                Log.d(ContentValues.TAG, "실패 : $t")
+            }
+        })
 
     }
 
