@@ -21,6 +21,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
+import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
 import kotlinx.android.synthetic.main.news_list_item.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -94,7 +96,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 runOnUiThread {
-                    val dotsIndicator = findViewById<DotsIndicator>(R.id.dots_indicator)
+                    val dotsIndicator = findViewById<SpringDotsIndicator>(R.id.dots_indicator)
                     val viewPager_news : ViewPager2 = findViewById(R.id.viewPager_news)
 //        viewPager_news.offscreenPageLimit = 1 // 1개의 페이지 미리 로드
                     viewPager_news.adapter = ViewPagerAdapter(getNewsList()) //adapter 생성
@@ -112,7 +114,7 @@ class MainActivity : AppCompatActivity() {
 
         // 메인화면 toolbar -> 사용 안하는 것
         val toolbar = findViewById<Toolbar>(R.id.toolbar_main)
-        toolbar.title = "  Main Toolbar"
+        toolbar.title = "  HOME"
         toolbar.inflateMenu(R.menu.menu_nothing)
         setSupportActionBar(toolbar)
 

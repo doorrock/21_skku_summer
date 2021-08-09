@@ -12,12 +12,13 @@
         android:background="@color/white"
         tools:context=".MainActivity">
 
-        <!--&lt;!&ndash;메인화면 toolbar-->
+        <!--메인화면 toolbar-->
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/real_action_bar"            app:titleTextColor="@color/white"
+            android:background="@color/real_action_bar"
+            app:titleTextColor="@color/white"
             app:logo="@drawable/ic_home"
             android:minHeight="?attr/actionBarSize"/>
 
@@ -25,36 +26,31 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:orientation="vertical"
-            android:layout_margin="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="18dp"
             android:background="@drawable/custom_layout2">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:layout_marginTop="10dp"
-                android:textSize="16dp"
-                android:textColor="@color/black"
-                android:text="@string/news_list"/>
 
             <androidx.viewpager2.widget.ViewPager2
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="200dp"
                 android:id="@+id/viewPager_news" />
 
-            <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+            <com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
                 android:id="@+id/dots_indicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
-                app:dotsColor="@color/action_bar"
+                app:dotsColor="@color/main_color"
+                app:dampingRatio="0.5"
                 app:dotsCornerRadius="8dp"
-                app:dotsSize="12dp"
-                app:dotsSpacing="3.5dp"
-                app:dotsWidthFactor="2"
-                app:selectedDotColor="@color/main_color"
-                app:progressMode="false"
+                app:dotsSize="15dp"
+                app:dotsSpacing="4.5dp"
+                app:dotsStrokeWidth="2dp"
+                app:stiffness="300"
+                app:dotsStrokeColor="@color/main_color"
                 />
 
 
@@ -66,7 +62,9 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@drawable/custom_layout2"
-            android:layout_margin="15dp">
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp">
 
             <TextView
                 android:layout_width="match_parent"
