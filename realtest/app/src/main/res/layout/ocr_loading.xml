@@ -34,7 +34,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="80dp"
         app:backgroundTint="@color/home_button"
-        app:srcCompat="@drawable/up"/>
+        app:srcCompat="@drawable/ic_home"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -43,6 +43,6 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:backgroundTint="@color/home_button"
-        app:srcCompat="@drawable/ic_home"/>
+        app:srcCompat="@drawable/ic_action_camera_white"/>
 
 </FrameLayout>

@@ -1,6 +1,7 @@
 package com.cookandroid.realtest
 
 import android.content.ContentValues
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -8,15 +9,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.marginLeft
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 import kotlinx.android.synthetic.main.news_list_item.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -89,11 +93,14 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
 
-                // try to touch View of UI thread
-
-
-
-//                    every_news_Title.text=list_title[2]
+                runOnUiThread {
+                    val dotsIndicator = findViewById<DotsIndicator>(R.id.dots_indicator)
+                    val viewPager_news : ViewPager2 = findViewById(R.id.viewPager_news)
+//        viewPager_news.offscreenPageLimit = 1 // 1개의 페이지 미리 로드
+                    viewPager_news.adapter = ViewPagerAdapter(getNewsList()) //adapter 생성
+                    dotsIndicator.setViewPager2(viewPager_news)
+                    viewPager_news.orientation = ViewPager2.ORIENTATION_HORIZONTAL // 방향 가로로 swipe
+                }
             }
 
 
@@ -131,11 +138,45 @@ class MainActivity : AppCompatActivity() {
 
         fileView.setOnItemClickListener{parent, view, position, id ->
             var fName = fileList[position]
-            var intent = Intent(applicationContext, ResultActivity2::class.java)
+            var intent = Intent(applicationContext, ResultActivity::class.java)
             intent.putExtra("filename", fName)
             startActivity(intent)
         }
 
+        fileView.setOnItemLongClickListener{parent, view, position, id ->
+
+            /*listview item 삭제 위한 dialog*/
+            var fName = fileList[position]
+            val file_path = "${filesDir}" + "/" + "$fName" + ".json"
+            var file = File(file_path)
+            val dlt = AlertDialog.Builder(this@MainActivity)
+            dlt.setMessage("'$fName' 파일을 삭제하시겠습니까?")
+            dlt.setIcon(R.drawable.file)
+
+            dlt.setPositiveButton("확인", DialogInterface.OnClickListener{ dialog, which ->
+
+                // 'fName'인 파일 존재하면 삭제
+                if(file.exists()) {
+                    /*fileView.removeViewAt(position)
+                    fileAd.notifyDataSetChanged()*/
+                    file.delete()
+
+                }
+                if(!file.exists()) {
+                    Toast.makeText(applicationContext, "파일이 삭제되었습니다.", Toast.LENGTH_SHORT).show()
+                    fileAd.notifyDataSetChanged()
+                }
+            })
+
+            dlt.setNegativeButton("취소", DialogInterface.OnClickListener{ dialog, which ->
+                dialog.cancel()
+                Toast.makeText(applicationContext, "취소되었습니다.", Toast.LENGTH_SHORT).show()
+            })
+
+            dlt.show()
+
+            true
+        }
 
         // camera button 연결
         var btnCamera = findViewById<FloatingActionButton>(R.id.btn1)
@@ -144,10 +185,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val viewPager_news : ViewPager2 = findViewById(R.id.viewPager_news)
-//        viewPager_news.offscreenPageLimit = 1 // 1개의 페이지 미리 로드
-        viewPager_news.adapter = ViewPagerAdapter(getNewsList()) //adapter 생성
-        viewPager_news.orientation = ViewPager2.ORIENTATION_HORIZONTAL // 방향 가로로 swipe
+
     }
 
 
@@ -174,8 +212,8 @@ class MainActivity : AppCompatActivity() {
         inner class PagerViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder
             (LayoutInflater.from(parent.context).inflate(R.layout.news_list_item, parent, false)) {
 
-            val news_title = itemView.findViewById<TextView>(R.id.every_news_Title)!!
-            val news_content = itemView.findViewById<TextView>(R.id.every_news_Content)!!
+            var news_title = itemView.findViewById<TextView>(R.id.every_news_Title)!!
+            var news_content = itemView.findViewById<TextView>(R.id.every_news_Content)!!
             fun bind(position: Int){
 //                news_title.text=list_title[position]
                 if( !list_title.isEmpty() ) {
