@@ -22,7 +22,7 @@ class OcrActivity:AppCompatActivity() {
         setContentView(R.layout.ocr_loading)
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar_ocr)
-        toolbar.title = "  Result"
+        toolbar.title = ""
         toolbar.inflateMenu(R.menu.menu_nothing)
         setSupportActionBar(toolbar)
 

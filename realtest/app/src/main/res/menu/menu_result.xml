@@ -5,12 +5,12 @@
     tools:context=".ResultActivity2">
     <item
         android:id="@+id/compare"
-        android:icon="@drawable/compare_white"
+        android:icon="@drawable/result_past_clock"
         app:showAsAction="ifRoom"
-        android:title="비교하기"/>
+        android:title="비교하기" />
     <item
         android:id="@+id/search"
-        android:icon="@drawable/search"
+        android:icon="@drawable/result_shopping_cart"
         app:showAsAction="ifRoom"
         android:title="관련제품보기"/>
 </menu>

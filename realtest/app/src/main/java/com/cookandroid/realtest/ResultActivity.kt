@@ -66,7 +66,7 @@ class ResultActivity : AppCompatActivity() {
         setContentView(R.layout.activity_result)
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar_result)
-        toolbar.title = "  Result"
+        toolbar.title = ""
         toolbar.inflateMenu(R.menu.menu_result)
         setSupportActionBar(toolbar)
 
@@ -387,7 +387,7 @@ class ResultActivity : AppCompatActivity() {
         builder.setTitle("제품 정보 입력")
 
         val input = EditText(this)
-        input.setHint("오리온_초코파이")
+        input.setHint("오리온 초코파이")
         input.inputType = InputType.TYPE_CLASS_TEXT
         builder.setView(input)
 
@@ -529,7 +529,7 @@ class ResultActivity : AppCompatActivity() {
                 }
 
                 var dlg = AlertDialog.Builder(this@ResultActivity)
-                dlg.setTitle("이전 기록과 비교하기")
+                dlg.setTitle("최근 기록과 비교하기")
                 dlg.setIcon(R.drawable.compare_black)
                 dlg.setView(compare_dialog)
                 dlg.setPositiveButton("닫기", null)

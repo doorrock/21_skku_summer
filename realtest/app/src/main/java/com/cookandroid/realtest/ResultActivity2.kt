@@ -59,7 +59,7 @@ class ResultActivity2 : AppCompatActivity(){
         setContentView(R.layout.activity_result2)
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar_result2)
-        toolbar.title = "  Result"
+        toolbar.title = ""
         toolbar.inflateMenu(R.menu.menu_nothing)
         setSupportActionBar(toolbar)
 
