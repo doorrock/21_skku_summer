@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#000000</color>
+    <color name="skyblue">#03BCF4</color>
+    <color name="capture_back">#f8f9fa</color>
+    <color name="white">#ffffff</color>
+    <color name="home_button">#3C3968</color>
+    <color name="shadow">#B3B3B3</color>
+    <color name="action_bar">#6760C5</color>
+    <color name="real_action_bar">#2e2c4c</color>
+    <color name="main_color">#8A78D8</color>
+    <color name="chart_yellow">#F8DC7F</color>
+    <color name="chart_red">#FF5353</color>
+    <color name="chart_green">#65C568</color>
+</resources>

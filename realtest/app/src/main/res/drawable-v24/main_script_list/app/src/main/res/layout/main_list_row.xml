@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/main_list_selector"
+    android:orientation="horizontal"
+    android:padding = "5dp" >
+
+    <!--list view 왼쪽 이미지-->
+    <LinearLayout
+        android:id="@+id/thumbnail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/main_list_image_bg"
+        android:layout_marginRight="5dp">
+
+        <ImageView
+            android:id="@+id/list_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/vegetable" />
+
+    </LinearLayout>
+
+    <!--text file 이름-->
+    <TextView
+        android:id="@+id/list_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/thumbnail"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:text="파일 이름 자리"
+        android:textColor="#040404"
+        android:typeface="sans"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="5dp"/>
+
+    <!--text file 저장 날짜-->
+    <TextView
+        android:id="@+id/list_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/list_title"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:textColor="#343434"
+        android:textSize="13dp"
+        android:layout_marginTop="2dp"
+        android:text="2021-07-14 저장 날짜"
+        android:layout_marginLeft="7dp" />
+
+
+</RelativeLayout>

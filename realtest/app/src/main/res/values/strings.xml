@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">realtest</string>
+    <string name="cover1">&lt; 나트륨 &gt;</string>
+    <string name="cover2">&lt; 탄수화물 &gt;</string>
+    <string name="cover3">&lt; 당류 &gt;</string>
+    <string name="cover4">&lt; 지방 &gt;</string>
+    <string name="cover5">&lt; 트랜스지방 &gt;</string>
+    <string name="cover6">&lt; 포화지방 &gt;</string>
+    <string name="cover7">&lt; 콜레스테롤 &gt;</string>
+    <string name="cover8">&lt; 단백질 &gt;</string>
+    <string name="direct_key">&lt; 영양소 바로가기 &gt;</string>
+    <string name="saved_data">&lt; 저장된 데이터 목록 &gt;</string>
+</resources>

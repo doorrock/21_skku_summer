@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_compare"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/real_action_bar"
+            android:minHeight="?attr/actionBarSize"
+            app:logo="@drawable/ic_home"
+            app:titleTextColor="@color/white" />
+
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/scrollView_compare"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@drawable/custom_layout2">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="No data"
+                        android:textSize="15dp"
+                        android:textAlignment="center"
+                        android:layout_margin="8dp"
+                        android:textColor="@color/black"
+                        android:id="@+id/text_compare"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/custom_layout2">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="영양정보 그래프"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="( 1일 영양성분 기준치에 대한 비율 )"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"/>
+                    <com.github.mikephil.charting.charts.BarChart
+                        android:id="@+id/bar_chart_compare"
+                        android:layout_width="match_parent"
+                        android:layout_height="240dp"
+                        android:layout_margin="16dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/direct_key"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="10dp"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/button1_compare"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="나트륨"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:background="@drawable/custom_button"
+                            android:layout_margin="2dp"/>
+
+                        <Button
+                            android:id="@+id/button2_compare"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="탄수화물"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:background="@drawable/custom_button"
+                            android:layout_margin="2dp"/>
+
+                        <Button
+                            android:id="@+id/button3_compare"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="당류"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:background="@drawable/custom_button"
+                            android:layout_margin="2dp"/>
+
+                        <Button
+                            android:id="@+id/button4_compare"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="지방"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:background="@drawable/custom_button"
+                            android:layout_margin="2dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/button5_compare"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="트랜스지방"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:background="@drawable/custom_button"
+                            android:layout_margin="2dp"/>
+
+                        <Button
+                            android:id="@+id/button6_compare"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="포화지방"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:background="@drawable/custom_button"
+                            android:layout_margin="2dp"/>
+
+                        <Button
+                            android:id="@+id/button7_compare"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="콜레스테롤"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:background="@drawable/custom_button"
+                            android:layout_margin="2dp"/>
+
+                        <Button
+                            android:id="@+id/button8_compare"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="단백질"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:background="@drawable/custom_button"
+                            android:layout_margin="2dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/chart1_compare"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/custom_layout">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cover1"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="( 단위: mg )"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No data"
+                        android:textSize="16dp"
+                        android:id="@+id/chart1_text_compare"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="16dp"/>
+                    <com.github.mikephil.charting.charts.HorizontalBarChart
+                        android:id="@+id/hor_chart1_compare"
+                        android:layout_width="match_parent"
+                        android:layout_height="240dp"
+                        android:layout_margin="16dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/chart2_compare"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/custom_layout">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cover2"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="( 단위: g )"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No data"
+                        android:textSize="16dp"
+                        android:id="@+id/chart2_text_compare"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="16dp"/>
+                    <com.github.mikephil.charting.charts.HorizontalBarChart
+                        android:id="@+id/hor_chart2_compare"
+                        android:layout_width="match_parent"
+                        android:layout_height="240dp"
+                        android:layout_margin="16dp"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/chart3_compare"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/custom_layout">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cover3"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="( 단위: g )"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No data"
+                        android:textSize="16dp"
+                        android:id="@+id/chart3_text_compare"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="16dp"/>
+                    <com.github.mikephil.charting.charts.HorizontalBarChart
+                        android:id="@+id/hor_chart3_compare"
+                        android:layout_width="match_parent"
+                        android:layout_height="240dp"
+                        android:layout_margin="16dp"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/chart4_compare"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/custom_layout">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cover4"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="( 단위: g )"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No data"
+                        android:textSize="16dp"
+                        android:id="@+id/chart4_text_compare"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="16dp"/>
+                    <com.github.mikephil.charting.charts.HorizontalBarChart
+                        android:id="@+id/hor_chart4_compare"
+                        android:layout_width="match_parent"
+                        android:layout_height="240dp"
+                        android:layout_margin="16dp"/>
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:id="@+id/chart5_compare"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/custom_layout">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cover5"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="( 단위: g )"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No data"
+                        android:textSize="16dp"
+                        android:id="@+id/chart5_text_compare"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="16dp"/>
+                    <com.github.mikephil.charting.charts.HorizontalBarChart
+                        android:id="@+id/hor_chart5_compare"
+                        android:layout_width="match_parent"
+                        android:layout_height="240dp"
+                        android:layout_margin="16dp"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/chart6_compare"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/custom_layout">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cover6"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="( 단위: g )"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No data"
+                        android:textSize="16dp"
+                        android:id="@+id/chart6_text_compare"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="16dp"/>
+                    <com.github.mikephil.charting.charts.HorizontalBarChart
+                        android:id="@+id/hor_chart6_compare"
+                        android:layout_width="match_parent"
+                        android:layout_height="240dp"
+                        android:layout_margin="16dp"/>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/chart7_compare"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/custom_layout">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cover7"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="( 단위: mg )"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No data"
+                        android:textSize="16dp"
+                        android:id="@+id/chart7_text_compare"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="16dp"/>
+                    <com.github.mikephil.charting.charts.HorizontalBarChart
+                        android:id="@+id/hor_chart7_compare"
+                        android:layout_width="match_parent"
+                        android:layout_height="240dp"
+                        android:layout_margin="16dp"/>
+
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:id="@+id/chart8_compare"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/custom_layout">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cover8"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="( 단위: g )"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No data"
+                        android:textSize="16dp"
+                        android:id="@+id/chart8_text_compare"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="16dp"/>
+                    <com.github.mikephil.charting.charts.HorizontalBarChart
+                        android:id="@+id/hor_chart8_compare"
+                        android:layout_width="match_parent"
+                        android:layout_height="240dp"
+                        android:layout_margin="16dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab2_compare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="@dimen/fab_margin"
+        app:backgroundTint="@color/home_button"
+        app:srcCompat="@drawable/up"/>
+
+</FrameLayout>

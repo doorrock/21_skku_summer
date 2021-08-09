@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="20">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_camera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/real_action_bar"
+        app:titleTextColor="@color/white"
+        android:minHeight="?attr/actionBarSize"
+        app:logo="@drawable/camera_toolbar">
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <FrameLayout
+        android:id="@+id/camera_preview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="16.5"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="3.5"
+        android:background="@color/real_action_bar"
+        android:weightSum="3.7">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="23dp"
+            android:layout_marginTop="21dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <ImageButton
+                android:id="@+id/button_home"
+                android:src="@drawable/camera_home"
+                android:background="@color/real_action_bar"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:scaleType="fitCenter"
+                android:padding="0dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="HOME"
+                android:textStyle="bold"
+                android:textSize="11dp"
+                android:textColor="#ffffff" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.7"
+            android:layout_margin="15dp">
+            <ImageButton
+                android:id="@+id/button_capture"
+                android:src="@drawable/camera_camera"
+                android:background="@color/real_action_bar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="0dp"
+                android:scaleType="fitCenter"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="23dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="21dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
+            <ImageButton
+                android:id="@+id/button_rotate"
+                android:src="@drawable/camera_flip"
+                android:background="@color/real_action_bar"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:padding="0dp"
+                android:scaleType="fitCenter" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="ROTATE"
+                android:textStyle="bold"
+                android:textSize="11dp"
+                android:textColor="#ffffff" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
