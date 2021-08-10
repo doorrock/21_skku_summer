@@ -3,6 +3,7 @@ package com.cookandroid.realtest
 import android.content.ContentValues
 import android.content.DialogInterface
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -37,6 +38,8 @@ import java.io.File
 class MainActivity : AppCompatActivity() {
     val list_title = mutableListOf<String>()
     val list_content = mutableListOf<String>()
+    val list_news = mutableListOf<String>()
+
     private var backPressedTime: Long = 0
 
 
@@ -58,7 +61,8 @@ class MainActivity : AppCompatActivity() {
 
         @SerializedName("title") val title: String,
         @Expose
-        @SerializedName("content") val content: String
+        @SerializedName("content") val content: String,
+        @SerializedName("news_url") val news_url: String
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -88,8 +92,10 @@ class MainActivity : AppCompatActivity() {
                     i.let {
                         val title = it.title
                         val content = it.content
+                        val news_u = it.news_url
                         list_title.add(title)
                         list_content.add(content)
+                        list_news.add(news_u)
 
                         Log.i("data", i.toString())
                     }
@@ -216,11 +222,18 @@ class MainActivity : AppCompatActivity() {
 
             var news_title = itemView.findViewById<TextView>(R.id.every_news_Title)!!
             var news_content = itemView.findViewById<TextView>(R.id.every_news_Content)!!
+            var news_link = itemView.findViewById<LinearLayout>(R.id.news_linkage)!!
             fun bind(position: Int){
 //                news_title.text=list_title[position]
                 if( !list_title.isEmpty() ) {
                     this.news_title.text = list_title[position]
                     this.news_content.text = list_content[position]
+                    news_link.setOnClickListener {
+                        var pro = list_news[position]
+                        var intent2 = Intent(Intent.ACTION_VIEW, Uri.parse(pro))
+                        startActivity(intent2)
+
+                    }
                 }
 
 
