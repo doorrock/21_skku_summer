@@ -51,8 +51,8 @@ class OcrActivity:AppCompatActivity() {
             .setType(MultipartBody.FORM)
             .addFormDataPart(
                 "image",
-                "test1.jpg",
-                File("/storage/emulated/0/Pictures/MyCamApp/test1.jpg").asRequestBody()
+                "test.jpg",
+                File("/storage/emulated/0/Pictures/MyCamApp/test.jpg").asRequestBody()
             ).build()
 
         val request = Request.Builder()

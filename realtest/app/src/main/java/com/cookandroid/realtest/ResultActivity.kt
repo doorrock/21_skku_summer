@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
@@ -294,7 +295,8 @@ class ResultActivity : AppCompatActivity() {
                             val title = it.title
                             val content = it.content
                             val imageurl= it.imageurl
-                            list.add(ResultGetSearch(title,content, imageurl))
+                            val product_url=it.product_url
+                            list.add(ResultGetSearch(title,content, imageurl, product_url))
 
                             Log.i("data", i.toString())
 
@@ -498,7 +500,8 @@ class ResultActivity : AppCompatActivity() {
         @SerializedName("title") val title: String,
         @Expose
         @SerializedName("content") val content: String,
-        @SerializedName("imageurl") val imageurl: String
+        @SerializedName("imageurl") val imageurl: String,
+        @SerializedName("product_url") val product_url: String
     )
 
 
@@ -510,15 +513,22 @@ class ResultActivity : AppCompatActivity() {
             val imageView :ImageView = view.findViewById(R.id.iconIv)
             var textView : TextView = view.findViewById(R.id.titleTv)
             var textView1 : TextView = view.findViewById(R.id.descTv)
-
+            var product_linkage : LinearLayout = view.findViewById(R.id.coupang)
 
             var person : ResultGetSearch = items[position]
 
             val url = person.imageurl
+            val product_ur = person.product_url
             Glide.with(this@ResultActivity).load(url).into(imageView)
             textView.text = person.title
             textView1.text = person.content
 
+            product_linkage.setOnClickListener {
+                var pro = product_ur
+                var intent2 = Intent(Intent.ACTION_VIEW, Uri.parse(pro))
+                startActivity(intent2)
+
+            }
 
             return view
         }
