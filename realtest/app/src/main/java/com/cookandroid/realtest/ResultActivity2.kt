@@ -111,7 +111,7 @@ class ResultActivity2 : AppCompatActivity(){
         inFs.read(txt)
         inFs.close()
 
-        var tmp_allergy = arrayListOf("복숭아", "아몬드", "계란", "갑각류", "생선", "대파", "밀", "쌀", "설탕", "콩", "소금", "마늘", "돼지고기")
+        var tmp_allergy = arrayListOf("계란", "우유", "치즈", "밀가루", "참깨", "콩", "게", "새우", "조개", "복숭아", "오이", "마늘", "돼지고기")
         var user_info_allergy = txt.toString(Charsets.UTF_8).trim()
         var str_temp = StringBuilder()
         for(i in 0..user_info_allergy.length-1){

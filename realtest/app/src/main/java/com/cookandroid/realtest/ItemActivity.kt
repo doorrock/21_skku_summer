@@ -1,5 +1,6 @@
 package com.cookandroid.realtest
 
+import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -11,16 +12,40 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.xizzhu.simpletooltip.ToolTip
 import com.github.xizzhu.simpletooltip.ToolTipView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.GET
+import retrofit2.http.Path
 import java.io.FileInputStream
 import kotlin.text.StringBuilder
 
 class ItemActivity : AppCompatActivity() {
+    interface API2{
+        @GET("/{product_name}")
+        fun getSearch(@Path("product_name") product_name: String): Call<List<ResultGetSearch>>
+
+    }
+
+    var list = mutableListOf<ResultGetSearch>()
+    var categoryName = arrayListOf("빵", "샌드위치", "샐러드",
+        "아이스크림", "초콜릿", "사탕",
+        "과자", "젤리", "시리얼",
+        "탄산음료", "과/채음료", "커피",
+        "라면", "김치", "유제품",
+        "유산균", "잼", "소스")
+
 
     private var backPressedTime: Long = 0
     override fun onBackPressed() {
@@ -38,27 +63,28 @@ class ItemActivity : AppCompatActivity() {
 
 
     lateinit var pieChart : PieChart
+    private lateinit var search_dialog : View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item)
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar_item)
-        toolbar.title = "  Result"
+        toolbar.title=""
         toolbar.inflateMenu(R.menu.menu_item)
         setSupportActionBar(toolbar)
 
-        val scrollView=findViewById<ScrollView>(R.id.scrollView_item)
         findViewById<FloatingActionButton>(R.id.fab2_item).setOnClickListener {
-            scrollView.post {
-                scrollView.fullScroll(ScrollView.FOCUS_UP)
-            }
-        } //최상위로 스크롤 floating button
-
-        findViewById<FloatingActionButton>(R.id.fab_item).setOnClickListener { view ->
             val intent = Intent(this@ItemActivity, MainActivity::class.java)
             startActivity(intent)
+            finish()
         } //메인으로 floating button
+
+        findViewById<FloatingActionButton>(R.id.fab_item).setOnClickListener {
+            val intent = Intent(this@ItemActivity, CameraActivity::class.java)
+            startActivity(intent)
+            finish()
+        } //카메라로 floating button
 
 
         var text_allergy = findViewById<TextView>(R.id.text_allergy_item)
@@ -67,7 +93,7 @@ class ItemActivity : AppCompatActivity() {
         inFs.read(txt)
         inFs.close()
 
-        var tmp_allergy = arrayListOf("복숭아", "아몬드", "계란", "갑각류", "생선", "대파", "밀", "쌀", "설탕", "콩", "소금", "마늘", "돼지고기")
+        var tmp_allergy = arrayListOf("계란", "우유", "치즈", "밀가루", "참깨", "콩", "게", "새우", "조개", "복숭아", "오이", "마늘", "돼지고기")
         var user_info_allergy = txt.toString(Charsets.UTF_8).trim()
         var str_temp = StringBuilder()
         for(i in 0..user_info_allergy.length-1){
@@ -92,7 +118,7 @@ class ItemActivity : AppCompatActivity() {
 
         var intent = getIntent()
         var items : ArrayList<String> = intent.getStringArrayListExtra("data")
-
+        var category_idx = intent.getIntExtra("category", 0)
 
         var grid_item = findViewById<ExpandableHeightGridView>(R.id.grid_item)
         var gridAdapter = gridAdapter(this@ItemActivity, items)
@@ -108,6 +134,46 @@ class ItemActivity : AppCompatActivity() {
         initPieChart()
         setPieChart(items)
 
+
+        val product_name = categoryName[category_idx]
+        val BASE_URL_API = "http://115.85.180.148:5000"
+        val retrofit = Retrofit.Builder()
+            .baseUrl(BASE_URL_API)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        val api = retrofit.create(ResultActivity.API2::class.java)
+        val callGetSearch = api.getSearch(product_name)
+
+        callGetSearch.enqueue(object : Callback<List<ResultActivity.ResultGetSearch>> {
+            override fun onResponse(
+                call: Call<List<ResultActivity.ResultGetSearch>>,
+                response: Response<List<ResultActivity.ResultGetSearch>>
+            ) {
+
+                Log.d(ContentValues.TAG, "성공 : ${response.raw()}")
+                var data : List<ResultActivity.ResultGetSearch>? = response?.body()
+                if(list.isEmpty()){
+                    for ( i in data!!) {
+                        i.let {
+                            val title = it.title
+                            val content = it.content
+                            val imageurl= it.imageurl
+                            list.add(ResultGetSearch(title, content, imageurl))
+
+                            Log.i("data", i.toString())
+
+                        }
+
+                    }
+                }
+
+
+            }
+
+            override fun onFailure(call: Call<List<ResultActivity.ResultGetSearch>>, t: Throwable) {
+                Log.d(ContentValues.TAG, "실패 : $t")
+            }
+        })
     }
 
     private fun makeResultText(data:ArrayList<String>, user_info: String): String {
@@ -225,6 +291,37 @@ class ItemActivity : AppCompatActivity() {
 
 
 
+    data class ResultGetSearch(
+        @SerializedName("title") val title: String,
+        @Expose
+        @SerializedName("content") val content: String,
+        @SerializedName("imageurl") val imageurl: String
+    )
+
+
+    inner class MyListAdapter(var mCtx:Context, var resource:Int, var items:List<ResultGetSearch>)
+        :ArrayAdapter<ResultGetSearch>( mCtx , resource , items ){
+        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+            val layoutInflater : LayoutInflater = LayoutInflater.from(mCtx)
+            val view : View = layoutInflater.inflate(resource , null )
+            val imageView :ImageView = view.findViewById(R.id.iconIv)
+            var textView : TextView = view.findViewById(R.id.titleTv)
+            var textView1 : TextView = view.findViewById(R.id.descTv)
+
+
+            var person : ResultGetSearch = items[position]
+
+            val url = person.imageurl
+            Glide.with(this@ItemActivity).load(url).into(imageView)
+            textView.text = person.title
+            textView1.text = person.content
+
+
+            return view
+        }
+
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_item, menu)
         return true
@@ -232,7 +329,18 @@ class ItemActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.search -> {
-                return super.onOptionsItemSelected(item)
+                search_dialog = View.inflate(this@ItemActivity, R.layout.dialog_main, null) //dialog_main.xml 대입
+                var listView_search = search_dialog.findViewById<ListView>(R.id.listView_search)
+                var adapter_search = MyListAdapter(this, R.layout.row, list)
+                adapter_search.notifyDataSetChanged()
+                listView_search.adapter = adapter_search
+
+                val dlg = AlertDialog.Builder(this@ItemActivity)
+                dlg.setTitle("관련 상품 목록")
+                dlg.setView(search_dialog)
+                dlg.setPositiveButton("닫기", null)
+                dlg.show()
+                return true
             }
             else ->{
                 return super.onOptionsItemSelected(item)

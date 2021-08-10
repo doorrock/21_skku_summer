@@ -51,8 +51,8 @@ class OcrActivity:AppCompatActivity() {
             .setType(MultipartBody.FORM)
             .addFormDataPart(
                 "image",
-                "test2.jpg",
-                File("/storage/emulated/0/Pictures/MyCamApp/test2.jpg").asRequestBody()
+                "test1.jpg",
+                File("/storage/emulated/0/Pictures/MyCamApp/test1.jpg").asRequestBody()
             ).build()
 
         val request = Request.Builder()
@@ -211,6 +211,7 @@ class OcrActivity:AppCompatActivity() {
                                 else {
                                     intentt = Intent(this@OcrActivity, ItemActivity::class.java)
                                     intentt.putExtra("data", item_data)
+                                    intentt.putExtra("category", category_idx)
                                     intentt.putExtra("test", str_temp)
                                     startActivity(intentt)
                                     overridePendingTransition(0, 0)

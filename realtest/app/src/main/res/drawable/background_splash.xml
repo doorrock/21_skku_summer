@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:drawable="@color/white"/>
+        android:drawable="@color/real_action_bar"/>
+
     <item
         android:drawable="@drawable/splash_img"
         android:gravity="center"
-        android:width="100dp"
-        android:height="80dp"/>
+        android:width="280dp"
+        android:height="200dp"/>
 </layer-list>

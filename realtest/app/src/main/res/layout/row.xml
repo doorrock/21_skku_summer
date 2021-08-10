@@ -12,7 +12,6 @@
         android:layout_width="80dp"
         android:layout_height="80dp" />
     <LinearLayout
-        android:id="@+id/coupang"
         android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

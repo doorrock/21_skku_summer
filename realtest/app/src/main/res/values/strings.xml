@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">realtest</string>
+    <string name="app_name">식품정보 스캐너</string>
     <string name="cover1">&lt; 나트륨 &gt;</string>
     <string name="cover2">&lt; 탄수화물 &gt;</string>
     <string name="cover3">&lt; 당류 &gt;</string>

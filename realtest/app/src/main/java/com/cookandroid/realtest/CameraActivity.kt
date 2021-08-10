@@ -400,7 +400,7 @@ class CameraActivity : AppCompatActivity() {
             R.id.user_information -> {
                 dialogView = View.inflate(this@CameraActivity, R.layout.dialog_user, null)
 
-                var tempA = arrayOf("복숭아", "아몬드", "계란", "갑각류", "생선", "대파", "밀", "쌀", "설탕", "콩", "소금", "마늘", "돼지고기")
+                var tempA = arrayOf("계란", "우유", "치즈", "밀가루", "참깨", "콩", "게", "새우", "조개", "복숭아", "오이", "마늘", "돼지고기")
                 var tempA_value = ArrayList<String>()
                 for(i in 0..tempA.size-1) tempA_value.add(tempA[i])
 

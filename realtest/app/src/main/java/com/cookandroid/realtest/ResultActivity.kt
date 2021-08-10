@@ -4,7 +4,6 @@ import android.content.ContentValues
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
@@ -39,7 +38,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
-import retrofit2.http.Url
 import java.io.*
 
 
@@ -51,13 +49,14 @@ class ResultActivity : AppCompatActivity() {
     }
 
     var list = mutableListOf<ResultGetSearch>()
-    private var backPressedTime: Long = 0
     var categoryName = arrayListOf("빵", "샌드위치", "샐러드",
         "아이스크림", "초콜릿", "사탕",
         "과자", "젤리", "시리얼",
         "탄산음료", "과/채음료", "커피",
         "라면", "김치", "유제품",
         "유산균", "잼", "소스")
+
+    private var backPressedTime: Long = 0
     override fun onBackPressed() {
         // 2초내 다시 클릭하면 앱 종료
         if (System.currentTimeMillis() - backPressedTime < 2000) {
@@ -88,7 +87,7 @@ class ResultActivity : AppCompatActivity() {
         setContentView(R.layout.activity_result)
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar_result)
-        toolbar.title = ""
+        toolbar.title=""
         toolbar.inflateMenu(R.menu.menu_result)
         setSupportActionBar(toolbar)
 
@@ -139,21 +138,7 @@ class ResultActivity : AppCompatActivity() {
         inFs.read(txt)
         inFs.close()
 
-        var tmp_allergy = arrayListOf(
-            "복숭아",
-            "아몬드",
-            "계란",
-            "갑각류",
-            "생선",
-            "대파",
-            "밀",
-            "쌀",
-            "설탕",
-            "콩",
-            "소금",
-            "마늘",
-            "돼지고기"
-        )
+        var tmp_allergy = arrayListOf("계란", "우유", "치즈", "밀가루", "참깨", "콩", "게", "새우", "조개", "복숭아", "오이", "마늘", "돼지고기")
         var user_info_allergy = txt.toString(Charsets.UTF_8).trim()
         var str_temp = StringBuilder()
         for (i in 0..user_info_allergy.length - 1) {
@@ -309,15 +294,13 @@ class ResultActivity : AppCompatActivity() {
                             val title = it.title
                             val content = it.content
                             val imageurl= it.imageurl
-                            val product_url=it.product_url
-                            list.add(ResultGetSearch(title,content, imageurl, product_url))
+                            list.add(ResultGetSearch(title,content, imageurl))
 
                             Log.i("data", i.toString())
 
                         }
 
                     }
-
                 }
 
 
@@ -515,36 +498,26 @@ class ResultActivity : AppCompatActivity() {
         @SerializedName("title") val title: String,
         @Expose
         @SerializedName("content") val content: String,
-        @SerializedName("imageurl") val imageurl: String,
-        @SerializedName("product_url") val product_url: String
+        @SerializedName("imageurl") val imageurl: String
     )
 
 
     inner class MyListAdapter(var mCtx:Context, var resource:Int, var items:List<ResultGetSearch>)
         :ArrayAdapter<ResultGetSearch>( mCtx , resource , items ){
-
         override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
             val layoutInflater : LayoutInflater = LayoutInflater.from(mCtx)
             val view : View = layoutInflater.inflate(resource , null )
             val imageView :ImageView = view.findViewById(R.id.iconIv)
             var textView : TextView = view.findViewById(R.id.titleTv)
             var textView1 : TextView = view.findViewById(R.id.descTv)
-            var product_linkage : LinearLayout = view.findViewById((R.id.coupang))
 
 
             var person : ResultGetSearch = items[position]
+
             val url = person.imageurl
-            val product_ur = person.product_url
             Glide.with(this@ResultActivity).load(url).into(imageView)
             textView.text = person.title
             textView1.text = person.content
-
-            product_linkage.setOnClickListener {
-                    var pro = product_ur
-                    var intent2 = Intent(Intent.ACTION_VIEW, Uri.parse(pro))
-                    startActivity(intent2)
-
-            }
 
 
             return view
@@ -570,7 +543,6 @@ class ResultActivity : AppCompatActivity() {
                 val dlg = AlertDialog.Builder(this@ResultActivity)
                 dlg.setTitle("관련 상품 목록")
                 dlg.setView(search_dialog)
-                listView_search.adapter = adapter_search
                 dlg.setPositiveButton("닫기", null)
                 dlg.show()
                 return true
