@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.skku_summer.food_info.ResultActivity">
+    <item
+        android:id="@+id/compare"
+        android:icon="@drawable/result_past_clock"
+        app:showAsAction="ifRoom"
+        android:title="비교하기" />
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/result_shopping_cart"
+        app:showAsAction="ifRoom"
+        android:title="관련제품보기"/>
+</menu>
