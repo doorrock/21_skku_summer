@@ -57,7 +57,7 @@ class OcrActivity:AppCompatActivity() {
             ).build()
 
         val request = Request.Builder()
-            .addHeader("Authorization", "KakaoAK bc2f67ece034c10e848eaff5b7261d17")
+            .addHeader("Authorization", "KakaoAK temp")
             .addHeader("Accept-Charset", "UTF-8")
             .addHeader("Content-Type", "multipart/form-data")
             .addHeader("Host", "dapi.kakao.com")
